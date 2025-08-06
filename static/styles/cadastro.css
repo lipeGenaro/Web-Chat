@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Aleo", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #6c009e, #181818, #181818, #6c009e);
+            background-size: 400% 400%;
+            height: 100vh;
+        }
+
+        @keyframes animate-bg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            width: 100%;
+            height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+        }
+
+        .cadastro-box {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+            position: relative;
+            background: rgba(30, 30, 30, 0.7);
+        }
+
+        .cadastro-box > h2 {
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .cadastro__form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .cadastro__input {
+            border: 2px solid #5a5a5a;
+            padding: 14px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            outline: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .cadastro__input::placeholder {
+            color: #b0b0b0;
+        }
+
+        .cadastro__input:focus {
+            border-color: #8a2be2;
+            box-shadow: 0 0 8px rgba(138, 43, 226, 0.6);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .password-strength {
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+            margin-top: 2px;
+            overflow: hidden;
+        }
+
+        .password-strength-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff0000, #ff9900, #33cc33);
+            transition: width 0.3s ease;
+        }
+
+        .login-link {
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            background: rgba(71, 0, 103, 0.3);
+            cursor: pointer;
+            color: #c7c7c7;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .login-link:hover {
+            background: rgba(71, 0, 103, 0.5);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .cadastro__button {
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #5a0080, #3a0052, #5a0080);
+            background-size: 200% 200%;
+            cursor: pointer;
+            color: #e0e0e0;
+            transition: all 0.3s ease;
+            animation: animate-button 8s infinite alternate;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes animate-button {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .cadastro__button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(90, 0, 128, 0.4);
+            color: #ffffff;
+        }
+
+        .terms {
+            font-size: 0.75rem;
+            color: #a0a0a0;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .terms a {
+            color: #b388ff;
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .cadastro-box {
+                max-width: 90%;
+                padding: 25px 20px;
+            }
+            
+            .cadastro-box > h2 {
+                font-size: 1.5rem;
+            }
+        }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <link rel="stylesheet" href="../static/styles/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="chat">
+            <div class="chat_header">
+                <h2 class="chat_nome">CHAT RAPAZES</h2>
+            </div>
+
+            <div class="chat_mensagem" id="chat-box"></div>
+
+            <form class="chat_form" onsubmit="sendMessage(); return false;">
+                <input class="chat_input" type="text" id="message-input" placeholder="Digite sua mensagem">
+                <button class="chat_button" type="submit">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const socket = io();
+        var usuario_logado;
+        function sendMessage() {
+            const msg = document.getElementById('message-input').value;
+            const nome_usuario = "{{ nome_usuario }}";
+            usuario_logado = nome_usuario;
+            if (msg.trim() === "") return;
+
+            //Mostra o nome do usuario
+            const messageData = {
+                nome_usuario: nome_usuario,
+                mensagem: msg
+
+            };
+
+            socket.send(messageData);
+            document.getElementById('message-input').value = '';
+        }
+
+        socket.on('message', function (data) {
+    const chatBox = document.getElementById('chat-box');
+    const messageContainer = document.createElement('div');
+    
+    // Verifica se a mensagem é do usuário atual
+    const isCurrentUser = (data.nome_usuario === usuario_logado);
+    messageContainer.className = `mensagem_container ${isCurrentUser ? 'mensagem_usuario' : 'mensagem_outros'}`;
+
+    const messageMeta = document.createElement('p');
+    messageMeta.className = 'mensagem_meta';
+    messageMeta.textContent = data.nome_usuario;
+
+    const messageText = document.createElement('div');
+    messageText.className = 'mensagem_texto';
+    messageText.textContent = data.mensagem;
+
+    messageContainer.appendChild(messageMeta);
+    messageContainer.appendChild(messageText);
+    chatBox.appendChild(messageContainer);
+    
+    // Rolagem automática para a última mensagem
+    chatBox.scrollTop = chatBox.scrollHeight;
+});
+    </script>
+</body>
+
+</html>
